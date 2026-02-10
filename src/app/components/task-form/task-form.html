@@ -1,0 +1,87 @@
+<div class="task-form-container">
+    <div class="form-header">
+        <svg class="icon" viewBox="0 0 24 24" data-tooltip="Agregar nueva tarea">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+        </svg>
+        <h2>Crear Nueva Tarea</h2>
+    </div>
+
+    <form [formGroup]="taskForm" (ngSubmit)="onSubmit()" class="task-form">
+
+        <div class="form-group">
+            <label for="title">
+                <svg class="icon icon-sm" viewBox="0 0 24 24" data-tooltip="Título de la tarea">
+                    <path d="M4 7h16M4 12h16M4 17h10"></path>
+                </svg>
+                Título de la Tarea
+            </label>
+            <input id="title" type="text" formControlName="title" placeholder="Ingresa el título de la tarea"
+                [class.invalid]="submitted && title?.invalid" />
+
+            @if (submitted && title?.invalid) {
+            <div class="error-message">
+                @if (title?.errors?.['required']) {
+                <svg class="icon icon-sm" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                </svg>
+                <span>El título es requerido</span>
+                }
+                @if (title?.errors?.['minlength']) {
+                <svg class="icon icon-sm" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                </svg>
+                <span>El título debe tener al menos 3 caracteres</span>
+                }
+            </div>
+            }
+        </div>
+
+        <div class="form-group">
+            <label for="description">
+                <svg class="icon icon-sm" viewBox="0 0 24 24" data-tooltip="Descripción de la tarea">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                    <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+                Descripción
+            </label>
+            <textarea id="description" formControlName="description" rows="4" placeholder="Describe la tarea en detalle"
+                [class.invalid]="submitted && description?.invalid"></textarea>
+
+            @if (submitted && description?.invalid) {
+            <div class="error-message">
+                @if (description?.errors?.['required']) {
+                <svg class="icon icon-sm" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                </svg>
+                <span>La descripción es requerida</span>
+                }
+                @if (description?.errors?.['minlength']) {
+                <svg class="icon icon-sm" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                </svg>
+                <span>La descripción debe tener al menos 10 caracteres</span>
+                }
+            </div>
+            }
+        </div>
+
+        <button type="submit" class="btn-submit" [disabled]="submitted && taskForm.invalid" data-tooltip="Crear tarea">
+            <svg class="icon icon-sm" viewBox="0 0 24 24">
+                <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            Agregar Tarea
+        </button>
+    </form>
+</div>
