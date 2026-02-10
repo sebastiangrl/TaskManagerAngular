@@ -161,6 +161,7 @@
         transition: all var(--transition-base);
         font-size: 0.875rem;
         background: var(--color-gray-50);
+        color: var(--color-gray-900);
 
         &:active {
           transform: scale(0.98);
@@ -169,7 +170,6 @@
 
       .btn-toggle {
         border-color: var(--color-gray-300);
-        color: var(--color-gray-700);
 
         &:hover {
           background: var(--color-accent);
@@ -192,7 +192,6 @@
 
       .btn-delete {
         border-color: var(--color-gray-300);
-        color: var(--color-gray-600);
 
         &:hover {
           background: var(--color-danger);
